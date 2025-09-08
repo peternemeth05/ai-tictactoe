@@ -138,7 +138,7 @@ def play_against_winning_and_blocking_ai():
         if current_player == 'X':
             player_move = minimax_ai(board, current_player)
         else:
-            player_move = minimax_ai(board, current_player)
+            player_move = random_ai_move(board, current_player)
         if make_move(board, player_move, current_player):
             make_move(board, player_move, current_player)
             turn_number+=1

@@ -5,9 +5,11 @@ import copy
 def minimax_ai(board, player):
     best_move = None
     best_score = None
-    for move in get_all_legal_moves(board):
+    legal_moves = get_all_legal_moves(board)
+    for move in legal_moves:
+        print(move)
         board = copy.deepcopy(board)
-        make_move(player, board, move)
+        make_move(board, move, player)
 
         opp = "O" if player == "X" else "X"
         score = minimax_score(board, opp, player)
@@ -16,7 +18,8 @@ def minimax_ai(board, player):
             best_move = move
             best_score = score
 
-    print(best_move)
+    #print(best_move)
+    #if best_move is None
     return( best_move)
 
 
@@ -40,7 +43,7 @@ def minimax_score(board, player_to_move, player_to_opt):
 
     for move in legal_moves:
         board = copy.deepcopy(board)
-        make_move(player_to_move, board, move)
+        make_move(board, move, player_to_move)
 
         opp = "O" if player_to_move == "X" else "X"
         opp_best_response_score = minimax_score(board, opp ,player_to_opt)
