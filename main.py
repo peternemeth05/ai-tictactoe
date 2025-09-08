@@ -1,5 +1,6 @@
 from functions import *
 from heuristic_ais import *
+from minimax_ai import *
 
 def play():
     players = ["X", "O"]
@@ -135,9 +136,9 @@ def play_against_winning_and_blocking_ai():
 
 
         if current_player == 'X':
-            player_move = human_player(board, current_player)
+            player_move = minimax_ai(board, current_player)
         else:
-            player_move = finds_all_winning_moves_ai(board, current_player)
+            player_move = minimax_ai(board, current_player)
         if make_move(board, player_move, current_player):
             make_move(board, player_move, current_player)
             turn_number+=1
