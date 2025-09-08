@@ -39,7 +39,7 @@ def make_move(board, move_coords, player):
         return board
     else:
         print("someone has already played there!")
-         # FIX: Return the board unmodified
+        return False # FIX: Return the board unmodified
 
 
 def get_winner(board):
@@ -78,7 +78,14 @@ def get_all_line_coords():
 def is_board_full(board):
     for col in board:
         for sq in col:
-            if sq is None:
+            if sq is " ":
                 return False
     return True
 
+def get_all_legal_moves(board):
+    legal_moves = []
+    for x, row in enumerate(board):
+        for y, val in enumerate(row):
+            if val is None:
+                legal_moves.append((x, y))
+    return legal_moves
