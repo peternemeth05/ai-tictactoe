@@ -46,8 +46,8 @@ def get_winner(board):
     all_line_coords = get_all_line_coords()
 
     for line in all_line_coords:
-        line_values = [board[x][y] for (x,y) in line]
-        if len(set(line_values)) == 1 and line_values[0] is not " ":
+        line_values = [board[y][x] for (x,y) in line]
+        if len(set(line_values)) == 1 and line_values[0] != " ":
             return line_values[0]
 
     return None
@@ -84,8 +84,8 @@ def is_board_full(board):
 
 def get_all_legal_moves(board):
     legal_moves = []
-    for x, row in enumerate(board):
-        for y, val in enumerate(row):
+    for y, row in enumerate(board):
+        for x, val in enumerate(row):
             if val == ' ':
-                legal_moves.append([x, y])
+                legal_moves.append([x,y])
     return legal_moves

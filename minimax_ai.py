@@ -3,20 +3,35 @@ from functions import *
 import copy
 
 def minimax_ai(board, player):
+    print(f"\n--- AI ({player}) is thinking... ---")
     best_move = None
     best_score = None
     legal_moves = get_all_legal_moves(board)
+    move_scores = {}
     for move in legal_moves:
-        print(move)
-        board = copy.deepcopy(board)
-        make_move(board, move, player)
+        board_copy = copy.deepcopy(board)
+        make_move(board_copy, move, player)
 
         opp = "O" if player == "X" else "X"
-        score = minimax_score(board, opp, player)
+        score = minimax_score(board_copy, opp, player)
+        move_scores[tuple(move) ] = score
+        print(f"AI evaluates move {move}: final score = {score}")
 
         if best_score is None or score > best_score:
             best_move = move
             best_score = score
+
+
+    print("--- AI's Final Analysis ---")
+    for move, score in move_scores.items():
+        result = "???"
+        if score == 10: result = "Guarantees a WIN"
+        elif score == 0: result = "Leads to a DRAW"
+        elif score == -10: result = "Leads to a LOSS"
+        print(f"  - Move {move}: {result} (Score: {score})")
+
+    print(f"-> AI chooses move: {best_move} (Highest Score)")
+    return best_move
 
     #print(best_move)
     #if best_move is None
