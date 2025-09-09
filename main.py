@@ -132,7 +132,7 @@ def run_tournament(num_games = 10):
 
         for i in range(num_games):
             print(f"\r  Game {i + 1}/{num_games}", end="")
-            winner = run_silent_game(p1_func, p2_func)
+            winner = play_silent(p1_func, p2_func)
             if winner == "X":
                 matchup_results["X"] += 1
             elif winner == "O":
@@ -145,14 +145,14 @@ def run_tournament(num_games = 10):
         
 
         # Calculate and print percentages
-        p1_win_pct = (results["X"] / num_games) * 100
-        p2_win_pct = (results["O"] / num_games) * 100
-        draw_pct = (results["draw"] / num_games) * 100
+        p1_win_pct = (matchup_results["X"] / num_games) * 100
+        p2_win_pct = (matchup_results["O"] / num_games) * 100
+        draw_pct = (matchup_results["draw"] / num_games) * 100
 
         print(f"  Results after {num_games} games:")
-        print(f"    -> {p1_name} (X) wins: {p1_win_pct:.1f}% ({results['X']} games)")
-        print(f"    -> {p2_name} (O) wins: {p2_win_pct:.1f}% ({results['O']} games)")
-        print(f"    -> Draws: {draw_pct:.1f}% ({results['draw']} games)")
+        print(f"    -> {p1_name} (X) wins: {p1_win_pct:.1f}% ({matchup_results['X']} games)")
+        print(f"    -> {p2_name} (O) wins: {p2_win_pct:.1f}% ({matchup_results['O']} games)")
+        print(f"    -> Draws: {draw_pct:.1f}% ({matchup_results['draw']} games)")
 
     return all_results, ai_names, num_games
 
