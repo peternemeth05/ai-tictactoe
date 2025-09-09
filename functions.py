@@ -19,7 +19,7 @@ def render(board):
 
 
 
-def get_move():
+def get_move(board, player):
     print()
     try: 
         x_coord = int(input("What is your move's X coordinate?: "))
@@ -27,7 +27,7 @@ def get_move():
 
         return [x_coord, y_coord]
     except ValueError:
-        print("Error, please input number 0 -> 2 \n")
+       # print("Error, please input number 0 -> 2 \n")
         return get_move()
     
     
@@ -38,7 +38,7 @@ def make_move(board, move_coords, player):
         board[y_coord][x_coord] = player
         return board
     else:
-        print("someone has already played there!")
+        #print("someone has already played there!")
         return False # FIX: Return the board unmodified
 
 
